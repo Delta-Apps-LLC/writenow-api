@@ -12,7 +12,7 @@ module.exports = function (passport) {
                     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
                     const msg = {
                         template_id: 'd-3cdfd7d337e04634a983fb96a4f86070',
-                        to: req.user.username, // Change to your recipient
+                        to: req.user.username,
                         from: {
                             name: 'Write Now',
                             email: 'thibaudeauapps@gmail.com',

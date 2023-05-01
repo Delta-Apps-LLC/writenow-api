@@ -5,7 +5,7 @@ const port = process.env.PORT || 3001
 
 app.use(cors({
   // Change to hosted website url
-  origin: 'http://localhost:3000'
+  origin: 'https://comforting-elf-62983d.netlify.app'
 }))
 
 app.listen(port, () => {

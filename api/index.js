@@ -4,8 +4,7 @@ const cors = require('cors')
 const port = process.env.PORT || 3001
 
 app.use(cors({
-  // Change to hosted website url
-  origin: 'https://comforting-elf-62983d.netlify.app'
+  origin: ""
 }))
 
 app.listen(port, () => {

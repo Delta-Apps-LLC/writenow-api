@@ -13,6 +13,7 @@ const Topics = require('./controller/topics')
 const Share = require('./controller/share')
 const Notifications = require('./controller/notifications')
 const Groups = require('./controller/groups')
+const Health = require('./controller/health')
 const bcrypt = require('bcryptjs')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
@@ -183,6 +184,7 @@ app.use(enforcerMiddleware.route({
 	share: Share(pool),
 	notifications: Notifications(pool),
 	groups: Groups(pool),
+	health: Health(pool),
 }))
 
 // fallback mocking middleware

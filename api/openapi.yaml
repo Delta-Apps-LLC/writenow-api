@@ -3,6 +3,28 @@ info:
   title: Daily Journal
   version: v1.0
 paths:
+  /health:
+    x-controller: health
+    get:
+      x-operation: checkHealth
+      tags:
+        - Health
+      summary: Check api connection ability
+      responses:
+        200:
+          description: Success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    healthRes:
+                      type: string
+                      readOnly: true
+        400:
+          description: Bad request
+        404:
+          description: Not found
   /accounts:
     x-controller: accounts
     post:

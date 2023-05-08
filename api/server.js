@@ -127,6 +127,15 @@ passport.deserializeUser((id, done) => {
 
 const app = express()
 
+// Add CORS headers
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://comforting-elf-62983d.netlify.app')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
+  res.setHeader('Access-Control-Allow-Credentials', true)
+  next()
+})
+
 // Any paths defined in your openapi.yml will validate and parse the request
 // before it calls your route code.
 const openapiPath = path.resolve(__dirname, 'openapi.yaml')

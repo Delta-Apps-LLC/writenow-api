@@ -13,14 +13,14 @@ paths:
       responses:
         200:
           description: Success
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    healthRes:
-                      type: string
-                      readOnly: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  healthRes:
+                    type: string
+                    readOnly: true
         400:
           description: Bad request
         404:

@@ -2,6 +2,7 @@ module.exports = function (passport) {
     const authenticate = passport.authenticate('local')
     const sgMail = require('@sendgrid/mail')
     require('dotenv').config()
+    const jwt = require('jsonwebtoken')
 
     return {
         login (req, res, next) {
@@ -31,16 +32,23 @@ module.exports = function (passport) {
                 // Tell the browser to set an extra cookie. This cookie
                 // is not secure, but it can help the UI to determine
                 // if the user is logged in or not.
-                res.cookie('user', JSON.stringify(req.user), {
-                    maxAge: 36000000 // expires in 10 hours
-                })
-                res.enforcer.status(200).send()
+                // res.cookie('user', JSON.stringify(req.user), {
+                //     maxAge: 36000000 // expires in 10 hours
+                // })
+
+                const token = jwt.sign({
+                    ...req.user,
+                    iat: Date.now(),
+                    exp: Date.now() + 1209600000 // milliseconds in two weeks
+                }, process.env.JWT_SIGNING_SECRET)
+
+                res.enforcer.status(200).send(token)
             })
         },
 
         logout (req, res) {
             if (req.user) req.logout()
-            res.clearCookie('user')
+            // res.clearCookie('user')
             res.enforcer.status(200).send()
         }
     }

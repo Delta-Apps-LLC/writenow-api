@@ -75,7 +75,7 @@ paths:
       tags:
         - Accounts
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Get the user's notification time
       responses:
         200:
@@ -91,7 +91,7 @@ paths:
       tags:
         - Accounts
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Delete an account
       responses:
         204: 
@@ -111,7 +111,7 @@ paths:
       tags:
         - Accounts
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Update user password
       responses:
         200:
@@ -165,7 +165,7 @@ paths:
           description: Account does not exist
   /authentication/logout:
     x-controller: authentication
-    put:
+    get:
       x-operation: logout
       tags:
         - Authentication
@@ -184,7 +184,7 @@ paths:
       tags:
         - Notifications
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Get the user's notifications
       responses:
         200:
@@ -206,7 +206,7 @@ paths:
       tags:
         - Notifications
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Update all notifications for user
       responses:
         200:
@@ -222,7 +222,7 @@ paths:
       tags:
         - Notifications
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Send a notification
       requestBody:
         required: true
@@ -270,7 +270,7 @@ paths:
       tags:
         - Notifications
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Update a notification
       requestBody:
         required: true
@@ -301,7 +301,7 @@ paths:
       tags:
         - Share
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Share an entry
       requestBody:
         required: true
@@ -339,7 +339,7 @@ paths:
       tags:
         - Share
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Search for users to share entry with or get the shared list for an entry
       responses:
         200:
@@ -357,7 +357,7 @@ paths:
       tags:
         - Share
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Share a prompt
       requestBody:
         required: true
@@ -390,7 +390,7 @@ paths:
       tags:
         - Share
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Get all entries and prompts shared with me
       responses:
         200:
@@ -409,7 +409,7 @@ paths:
       tags:
         - Share
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Remove a prompt from being shared with me
       responses:
         204:
@@ -426,7 +426,7 @@ paths:
       tags:
         - Share
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Unshare an entry
       responses:
         204:
@@ -440,7 +440,7 @@ paths:
       tags:
         - Groups
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Create a group
       requestBody:
         required: true
@@ -473,7 +473,7 @@ paths:
       tags:
         - Prompts
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Get a prompt
       responses:
         200:
@@ -491,7 +491,7 @@ paths:
       tags:
         - Prompt
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Set the active prompt
       requestBody:
         required: true
@@ -530,7 +530,7 @@ paths:
       tags:
         - Prompts
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Get a user's active prompt
       responses:
         200:
@@ -550,7 +550,7 @@ paths:
       tags:
         - Prompts
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Update the active prompt
       requestBody:
         required: true
@@ -585,7 +585,7 @@ paths:
       tags:
         - Topics
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Get all topics
       responses:
         200:
@@ -603,7 +603,7 @@ paths:
       tags:
         - Entries
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Filter entries by date or topic
       parameters:
         - $ref: '#/components/parameters/QueryAfterdate'
@@ -627,7 +627,7 @@ paths:
       tags:
         - Entries
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Submit an entry
       requestBody:
         $ref: '#/components/requestBodies/MakeEntry'
@@ -648,7 +648,7 @@ paths:
       tags:
         - Entries
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Get entries submitted today
       responses:
         200:
@@ -668,7 +668,7 @@ paths:
       tags:
         - Entries
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Update an entry
       requestBody:
         required: true
@@ -697,7 +697,7 @@ paths:
       tags:
         - Entries
       security:
-        - cookieAuth: []
+        - BearerAuth: []
       summary: Delete an entry
       responses:
         204:
@@ -841,6 +841,10 @@ components:
       type: apiKey
       in: cookie
       name: journalSessionId
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     ActivePrompt:
       type: object

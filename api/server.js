@@ -138,7 +138,7 @@ const app = express()
 //})
 
 app.use(cors({
-	origin: 'http://localhost:3000' //joinwritenow
+	origin: 'https://joinwritenow.com' //joinwritenow http://localhost:3000
 }))
 
 // Any paths defined in your openapi.yml will validate and parse the request

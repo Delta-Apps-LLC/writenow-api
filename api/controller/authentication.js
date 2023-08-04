@@ -3,7 +3,7 @@ module.exports = function (passport) {
     require('dotenv').config()
     const jwt = require('jsonwebtoken')
     const { Resend } = require('resend');
-    const { welcomeEmail } = require('./welcome')
+    const { welcomeEmail } = require('../welcome')
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     return {

@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs')
 module.exports = function (pool) {
 	return {
 		async createAccount (req, res) {
-			console.log(req)
 			const { firstname, lastname, username, password } = req.enforcer.body
 			const userid = await accounts.createAccount(pool, firstname, lastname, username, password)
 			if (userid) {

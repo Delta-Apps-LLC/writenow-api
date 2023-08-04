@@ -21,8 +21,10 @@ const session = require('express-session')
 const DatabaseAccounts = require('./database/accounts')
 const ConnectPgSimple = require('connect-pg-simple')(session)
 const cron = require('node-cron');
-const sgMail = require('@sendgrid/mail')
 const cors = require('cors');
+const { Resend } = require('resend');
+const { dailyPrompt } = require('./daily-prompt')
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 
 // Establish database connection
@@ -63,24 +65,14 @@ cron.schedule(`0 0 0 * * *`, () => {
 				let hour = time[0]
 				let min = time[1]
 				month += 1
-				// let ts = Math.round((new Date(Date.UTC(year, month, date, hour, min, 0, 0)).getTime() / 1000))
 
-				let task = cron.schedule(`0 ${min} ${hour} ${date} ${month} ${day}`, () => {
-					sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-						const msg = {
-							template_id: 'd-69856f01088a4338b11c72c497970a14',
-							to: res.rows[i].username, //res.rows[i].username
-							from: {
-								name: 'Write Now',
-								email: 'thibaudeauapps@gmail.com',
-							},
-							// send_at: ts,
-						}
-						sgMail.send(msg).then(() => {
-							  console.log('Email sent')
-							}).catch((error) => {
-							  console.error(error)
-							})
+				let task = cron.schedule(`0 ${min} ${hour} ${date} ${month} ${day}`, async () => {
+					await resend.emails.send({
+						from: 'andrew@deltaapps.dev',
+						to: res.rows[i].username,
+						subject: `It's time to journal!`,
+						html: dailyPrompt(),
+					})
 				}, {
 					timezone: "America/Denver" // Intl.DateTimeFormat().resolvedOptions().timeZone
 				})

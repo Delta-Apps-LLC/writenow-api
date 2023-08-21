@@ -68,7 +68,7 @@ cron.schedule(`0 0 0 * * *`, () => {
 
 				let task = cron.schedule(`0 ${min} ${hour} ${date} ${month} ${day}`, async () => {
 					await resend.emails.send({
-						from: 'andrew@deltaapps.dev',
+						from: 'Write Now <management@deltaapps.dev>',
 						to: res.rows[i].username,
 						subject: `It's time to journal!`,
 						html: dailyPrompt(),
@@ -130,7 +130,8 @@ const app = express()
 //})
 
 app.use(cors({
-	origin: 'https://joinwritenow.com' //joinwritenow http://localhost:3000
+	origin: 'https://joinwritenow.com',
+	// origin: 'http://localhost:3000'
 }))
 
 // Any paths defined in your openapi.yml will validate and parse the request

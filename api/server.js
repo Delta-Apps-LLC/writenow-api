@@ -130,7 +130,7 @@ const app = express()
 //})
 
 app.use(cors({
-	origin: 'https://joinwritenow.com',
+	origin: '*',
 	// origin: '*'
 }))
 

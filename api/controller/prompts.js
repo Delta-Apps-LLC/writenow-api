@@ -20,7 +20,7 @@ module.exports = function (pool) {
                 res.enforcer.status(200).send(activePrompt)
             }
             else {
-                res.enforcer.status(404).send()
+                res.enforcer.status(404).send(null)
             }
         },
 

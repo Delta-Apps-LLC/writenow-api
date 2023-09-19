@@ -14,7 +14,7 @@ module.exports = function (passport) {
                 if (req.body.isNew) {
                     await resend.emails.send({
 						from: 'Write Now <management@deltaapps.dev>',
-						to: res.rows[0].username,
+						to: req.body.username,
 						subject: `It's time to journal!`,
 						html: welcomeEmail(),
 					})
